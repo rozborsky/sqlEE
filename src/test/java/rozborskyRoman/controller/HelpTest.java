@@ -2,6 +2,7 @@ package rozborskyRoman.controller;
 
 import org.junit.Before;
 import org.junit.Test;
+import rozborskyRoman.controller.command.*;
 import rozborskyRoman.view.Console;
 
 import java.io.ByteArrayOutputStream;

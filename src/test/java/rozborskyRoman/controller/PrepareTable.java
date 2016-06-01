@@ -1,5 +1,7 @@
 package rozborskyRoman.controller;
 
+import rozborskyRoman.controller.command.Clear;
+import rozborskyRoman.controller.command.Insert;
 import rozborskyRoman.model.DBManager;
 import rozborskyRoman.view.Console;
 
@@ -36,9 +38,9 @@ public class PrepareTable {
     }
 
     private void createDBManager() {
-        manager = new DBManager("public", "postgres", "mainuser", "jdbc:postgresql://localhost:5432/");
+        manager = new DBManager();
         try {
-            manager.createConnection();
+            manager.createConnection("public", "postgres", "mainuser", "jdbc:postgresql://localhost:5432/");
         } catch (SQLException e) {
             //do noting
         }

@@ -1,7 +1,7 @@
 package rozborskyRoman.integration;
 
-import rozborskyRoman.controller.ExitException;
-import rozborskyRoman.controller.MainController;
+import rozborskyRoman.controller.command.ExitException;
+import rozborskyRoman.controller.command.MainController;
 
 import java.util.NoSuchElementException;
 

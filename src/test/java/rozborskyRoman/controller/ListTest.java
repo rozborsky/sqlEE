@@ -1,5 +1,6 @@
 package rozborskyRoman.controller;
 
+import rozborskyRoman.controller.command.List;
 import rozborskyRoman.model.DBManager;
 
 import org.junit.Before;

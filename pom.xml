@@ -34,7 +34,7 @@
                 <version>2.2</version>
                 <configuration>
                     <port>80</port>
-                    <path>/cmd</path>
+                    <path>/sqlCMD</path>
                 </configuration>
             </plugin>
         </plugins>

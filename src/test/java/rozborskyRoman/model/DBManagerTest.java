@@ -39,7 +39,7 @@ public class DBManagerTest {
     public void connection() {
         connection = null;
         try {
-            connection = manager.createConnection();
+            connection = manager.createConnection("public", "postgres", "mainuser", "jdbc:postgresql://localhost:5432/");
         } catch (SQLException e) {
             //do nothing
         }

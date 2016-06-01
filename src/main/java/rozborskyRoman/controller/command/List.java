@@ -1,4 +1,4 @@
-package rozborskyRoman.controller;
+package rozborskyRoman.controller.command;
 
 import rozborskyRoman.model.DBManager;
 import rozborskyRoman.view.*;

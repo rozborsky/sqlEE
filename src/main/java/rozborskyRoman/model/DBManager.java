@@ -7,20 +7,12 @@ import java.sql.*;
  */
 public class DBManager {
     private Connection connection;
-    private String url;
     private String database;
-    private String userName;
-    private String password;
     private String table = null;
 
-    public DBManager(String database, String userName, String password, String url) {
-        this.database = database;
-        this.userName = userName;
-        this.password = password;
-        this.url = url;
-    }
 
-    public Connection createConnection() throws SQLException {
+    public Connection createConnection(String database, String userName, String password, String url) throws SQLException {
+        this.database = database;
         if (connection != null) {
             this.connection = null;
         }

@@ -1,5 +1,7 @@
 package rozborskyRoman.controller;
 
+import rozborskyRoman.controller.command.Find;
+import rozborskyRoman.controller.command.Update;
 import rozborskyRoman.model.DBManager;
 import org.junit.Before;
 import org.junit.Test;

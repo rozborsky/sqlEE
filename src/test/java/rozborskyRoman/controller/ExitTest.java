@@ -1,6 +1,8 @@
 package rozborskyRoman.controller;
 
 import org.junit.Test;
+import rozborskyRoman.controller.command.Exit;
+import rozborskyRoman.controller.command.ExitException;
 import rozborskyRoman.view.Console;
 
 /**

@@ -1,13 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 	<head>
 		<title>SQLCmd</title>
 	</head>
 	<body>
 	<h1>Help</h1>
-	<a href="help">help</a></br>
-	<a href="/connect">connect</a></br>
-	<a href="/connect">help</a></br>
+	<c:forEach items="${items}" var="item">
+        <a href="${item}"> ${item}</a></br>
+    </c:forEach>
 
     <h2>HELP</h2>
 

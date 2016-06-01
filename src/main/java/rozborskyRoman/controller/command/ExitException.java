@@ -1,4 +1,4 @@
-package rozborskyRoman.controller;
+package rozborskyRoman.controller.command;
 
 /**
  * Created by roman on 09.05.2016.

@@ -1,4 +1,4 @@
-package rozborskyRoman.controller;
+package rozborskyRoman.controller.command;
 
 import rozborskyRoman.model.DBManager;
 import rozborskyRoman.view.InputOutput;
@@ -40,10 +40,10 @@ public class Connector {
             String userName = insertedValues[1];
             String password = insertedValues[2];
 
-            manager = new DBManager(database, userName, password, url);
+            manager = new DBManager();
 
             try {
-                manager.createConnection();
+                manager.createConnection(database, userName, password, url);
                 view.write(String.format("Connect to the database '%s' successful\n", database));
                 isConnect = true;
             } catch (SQLException e) {
