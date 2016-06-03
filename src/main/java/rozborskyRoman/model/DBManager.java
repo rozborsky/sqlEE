@@ -183,6 +183,10 @@ public class DBManager {
         }
     }
 
+    public void destroyConnection() {
+        connection = null;
+    }
+
     public void setTable(String table) {
         this.table = table;
     }

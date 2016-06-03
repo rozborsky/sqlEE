@@ -3,13 +3,14 @@
 <html>
 	<head>
 		<title>SQLCmd</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="style.css"/>"
 	</head>
 	<body>
-        <h1>connect</h1>
-        <c:forEach items="${items}" var="item">
-            <a href="${item}"> ${item}</a></br>
-        </c:forEach>
-        <p>public postgres mainuser</p>
+        <h1>SQL CMD</h1>
+
+        <p>public<br>
+        postgres<br>
+        mainuser</p>
         <form action="connect" method="post">
             <table>
                 <tr>

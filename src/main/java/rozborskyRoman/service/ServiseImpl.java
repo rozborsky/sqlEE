@@ -11,15 +11,21 @@ import java.util.List;
  */
 public class ServiseImpl implements Service {
 
-    private DBManager manager;
+    DBManager manager;
 
-    public ServiseImpl() {
-        manager = new DBManager();
+    public ServiseImpl(DBManager manager) {
+
+        this.manager = manager;
     }
 
     @Override
     public List<String> commandsList() {
-        return Arrays.asList("menu", "connect", "help", "exit");
+        return Arrays.asList("help", "exit");
+    }
+
+    @Override
+    public List<String> commands() {
+        return Arrays.asList("insert", "update", "delete", "clear");
     }
 
     @Override

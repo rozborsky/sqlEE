@@ -1,6 +1,7 @@
 package rozborskyRoman.controller.web;
 
 import rozborskyRoman.controller.command.ExitException;
+import rozborskyRoman.model.DBManager;
 import rozborskyRoman.service.Service;
 import rozborskyRoman.service.ServiseImpl;
 
@@ -15,6 +16,11 @@ import java.sql.SQLException;
  * Created by roman on 30.05.2016.
  */
 public class MainServlet extends HttpServlet {
+
+    DBManager manager;
+    boolean isConnect = false;
+    String table = null;
+
     static {//todo replase
         try {
             Class.forName("org.postgresql.Driver");
@@ -29,7 +35,9 @@ public class MainServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
 
-        service = new ServiseImpl();
+        manager = new DBManager();
+
+        service = new ServiseImpl(manager);
     }
 
     @Override
@@ -38,15 +46,49 @@ public class MainServlet extends HttpServlet {
         String action = getAction(request);
 
         request.setAttribute("items", service.commandsList());
-        if (action.startsWith("/menu") || action.equals("/")) {
-            request.getRequestDispatcher("menu.jsp").forward(request, response);
-        } else if (action.startsWith("/connect")) {
-            request.getRequestDispatcher("connect.jsp").forward(request, response);
-        } else if (action.startsWith("/help")) {
-            request.getRequestDispatcher("help.jsp").forward(request, response);
+        if (action.equals("/")) {
+            request.getRequestDispatcher("start.jsp").forward(request, response);
+        }
+        if (isConnect) {
+            String[] rows = new String[]{"chose table"};
+            ;
+            if (table != null) {
+                try {
+                    rows = manager.getRows();
+                } catch (SQLException e) {
+
+                }
+            }
+
+            request.setAttribute("content", rows);
+            if (action.startsWith("/mainPage")) {
+                setTable(request, response);
+                table = manager.getTable();
+                request.setAttribute("settable", table);
+                request.setAttribute("commands", service.commands());
+                request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+            } else if (action.startsWith("/exit")) {
+                manager.destroyConnection();
+                isConnect = false;
+                table = null;
+                request.getRequestDispatcher("start.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
         } else {
+            request.getRequestDispatcher("start.jsp").forward(request, response);
+        }
+    }
+
+    private void setTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] listTables = new String[]{"Database hasn't tables"};
+        try {
+            listTables = manager.list();
+        } catch (SQLException e) {
+            request.setAttribute("message", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+        request.setAttribute("tables", listTables);
     }
 
     private String getAction(HttpServletRequest request) {
@@ -65,13 +107,23 @@ public class MainServlet extends HttpServlet {
 
             try {
                 service.connect(databaseName, userName, password);
-                response.sendRedirect(response.encodeRedirectURL("menu"));
+                isConnect = true;
+                response.sendRedirect(response.encodeRedirectURL("mainPage"));
             } catch (SQLException e) {
                 request.setAttribute("items", service.commandsList());
                 request.setAttribute("message", e.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
+        } else if (action.startsWith("/selecttable")) {
+            String table = request.getParameter("table");
+            manager.setTable(table);
+
+            response.sendRedirect(response.encodeRedirectURL("mainPage"));
+        } else if (action.startsWith("/comman")) {
+            String table = request.getParameter("table");
+            manager.setTable(table);
+            request.setAttribute("table", table);
+            response.sendRedirect(response.encodeRedirectURL("mainPage"));
         }
     }
-
 }
