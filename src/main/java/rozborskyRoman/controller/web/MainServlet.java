@@ -1,16 +1,18 @@
 package rozborskyRoman.controller.web;
 
-import rozborskyRoman.controller.command.ExitException;
 import rozborskyRoman.model.DBManager;
 import rozborskyRoman.service.Service;
 import rozborskyRoman.service.ServiseImpl;
+import rozborskyRoman.view.InputOutput;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by roman on 30.05.2016.
@@ -25,7 +27,7 @@ public class MainServlet extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            throw new ExitException();
+            //throw new ExitException();
         }
     }
 
@@ -125,4 +127,31 @@ public class MainServlet extends HttpServlet {
             response.sendRedirect(response.encodeRedirectURL("mainPage"));
         }
     }
+
+
+    private String getUrl(InputOutput view) {
+        InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+        Properties property = new Properties();
+
+        try {
+            property.load(input);
+        } catch (Exception e) {
+            view.error("Can't find property file ", e);
+        }
+        return property.getProperty("url");
+    }
+
+
+//    try {
+//        id = Integer.parseInt(command);
+//    } catch (Exception e) {
+//        view.write("Insert correct id");
+//        continue;
+//    }
+//    if (manager.isExists(id)) {
+//        if (manager.delete(command)) {
+//            view.write("Row was removed");
+//            return;
+//        }
+//    }
 }

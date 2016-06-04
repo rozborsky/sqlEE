@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Created by roman on 18.03.2016.
  */
-public class Insert extends Command {
+public class Insert {
     protected int tableWidth;
     protected InputOutput view;
     protected String message = "Insert";
@@ -21,7 +21,7 @@ public class Insert extends Command {
         this.manager = manager;
     }
 
-    @Override
+
     public void process() throws SQLException {
         tableWidth = manager.getTableWidth();
         table = manager.getTable();
@@ -45,7 +45,7 @@ public class Insert extends Command {
                 continue;
             }
             if (enteredData[0].equals("exit")) {
-                throw new ExitException();
+
             }
             if (enteredData[0].equals("back")) {
                 return;
@@ -85,13 +85,4 @@ public class Insert extends Command {
         return columns;
     }
 
-    @Override
-    protected String format() {
-        return "insert";
-    }
-
-    @Override
-    protected String description() {
-        return "'insert' - to write to the current table";
-    }
 }

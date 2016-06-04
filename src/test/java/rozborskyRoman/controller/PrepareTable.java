@@ -1,6 +1,5 @@
 package rozborskyRoman.controller;
 
-import rozborskyRoman.controller.command.Clear;
 import rozborskyRoman.controller.command.Insert;
 import rozborskyRoman.model.DBManager;
 import rozborskyRoman.view.Console;
@@ -8,6 +7,7 @@ import rozborskyRoman.view.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by roman on 09.05.2016.
@@ -22,11 +22,11 @@ public class PrepareTable {
     }
 
     public void clearTable() throws SQLException {
-        Clear clear = new Clear(manager, view);
+        manager.clear();
         String confirmation = "y";
         InputStream iStream = new ByteArrayInputStream(confirmation.getBytes());
         System.setIn(iStream);
-        clear.process();
+
     }
 
     public void insertValues(String insertedValue) throws SQLException {

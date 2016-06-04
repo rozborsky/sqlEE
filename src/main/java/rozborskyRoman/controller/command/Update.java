@@ -12,7 +12,7 @@ public class Update extends Insert {
         super.message = "To update table insert";
     }
 
-    @Override
+
     protected String format() {
         return "update";
     }
@@ -36,7 +36,7 @@ public class Update extends Insert {
         }
     }
 
-    @Override
+
     protected String description() {
         return "'update' - to update current table";
     }
