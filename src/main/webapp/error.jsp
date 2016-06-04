@@ -4,12 +4,13 @@
 	<head>
 		<title>SQLCmd</title>
 	</head>
-	<body>
-	<h1>Error</h1>
-	<p>${message}</p>
-	 <c:forEach items="${items}" var="item">
-                <a href="${item}"> ${item}</a></br>
-            </c:forEach>
 
+	<body>
+        <h1>Error</h1>
+        <p>${message}</p>
+
+        <c:forEach items="${items}" var="item">
+            <a href="${item}"> ${item}</a></br>
+        </c:forEach>
 	</body>
 </html>

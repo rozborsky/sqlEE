@@ -3,17 +3,19 @@
 <html>
 	<head>
 		<title>SQLCmd</title>
+		<style>
+            <%@include file='style.css' %>
+        </style>
 	</head>
 	<body>
-        <h1>SQL CMD</h1>
-        <h1>${settable}</h1>
-        <c:forEach items="${items}" var="item">
-            <a href="${item}"> ${item}</a></br>
-        </c:forEach>
+	    <div class="mainPageLayout">
+	        <div class="leftLayout">
+                <h2>select table</h2>
+                <h1>${tableName}</h1>
 
-        <form action="selecttable" method="post">
+                <form action="tableName" method="post">
                     <select name="table">
-                    <option disabled>choose table</option>
+
                         <c:forEach items="${tables}" var="item">
                             <option value="${item}">${item}</option>
                         </c:forEach>
@@ -21,19 +23,27 @@
                     <input type="submit" value="ok"/>
                 </form>
 
-        <p>choose command</p>
-        <form action="commandss" method="post">
+                <h2>select command</h2>
+
+                <form action="commandExecutor" method="post">
                     <select name="tablee">
-                        <c:forEach items="${commands}" var="itemd">
-                            <option value="${itemd}">${itemd}</option>
+                        <c:forEach items="${commands}" var="command">
+                            <option value="${command}">${command}</option>
                         </c:forEach>
                     </select>
                     <input type="submit" value="ok"/>
                 </form>
 
-                <c:forEach items="${content}" var="itemda">
-                    <a href="${itemda}"> ${itemda}</a></br>
+                <c:forEach items="${items}" var="item">
+                    <a href="${item}"><h2>${item}</h2></a></br>
+                </c:forEach>
+            </div>
 
-                                        </c:forEach>
+            <div class="content">
+                <c:forEach items="${content}" var="row">
+                    ${row}</br>
+                </c:forEach>
+            </div>
+        </div>
 	</body>
 </html>

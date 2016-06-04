@@ -3,33 +3,34 @@
 <html>
 	<head>
 		<title>SQLCmd</title>
-        <link rel="stylesheet" type="text/css" href="<c:url value="style.css"/>"
+        <style>
+           <%@include file='style.css' %>
+        </style>
 	</head>
-	<body>
-        <h1>SQL CMD</h1>
 
-        <p>public<br>
-        postgres<br>
-        mainuser</p>
-        <form action="connect" method="post">
-            <table>
-                <tr>
-                    <td>Database name</td>
-                    <td><input type="text" name="dbname"/></td>
-                </tr>
-                <tr>
-                    <td>User name</td>
-                    <td><input type="text" name="username"/></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="connect"/></td>
-                </tr>
-            </table>
-        </form>
+	<body>
+        <h1 class="startH1">SQL CMD</h1>
+        <div class="logForm">
+            <form action="connect" method="post">
+                <table>
+                    <tr>
+                        <td>Database</td>
+                        <td><input type="text" name="dbname" value="public"/></td>
+                    </tr>
+                    <tr>
+                        <td>User name</td>
+                        <td><input type="text" name="username" value="postgres"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password" value="mainuser"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="connect"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 	</body>
 </html>

@@ -51,12 +51,12 @@ public class MainServlet extends HttpServlet {
         }
         if (isConnect) {
             String[] rows = new String[]{"chose table"};
-            ;
+
             if (table != null) {
                 try {
                     rows = manager.getRows();
                 } catch (SQLException e) {
-
+                    rows = new String[]{"table hasn't rows"};
                 }
             }
 
@@ -64,7 +64,7 @@ public class MainServlet extends HttpServlet {
             if (action.startsWith("/mainPage")) {
                 setTable(request, response);
                 table = manager.getTable();
-                request.setAttribute("settable", table);
+                request.setAttribute("tableName", table);
                 request.setAttribute("commands", service.commands());
                 request.getRequestDispatcher("mainPage.jsp").forward(request, response);
             } else if (action.startsWith("/exit")) {
@@ -114,10 +114,9 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("message", e.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-        } else if (action.startsWith("/selecttable")) {
+        } else if (action.startsWith("/tableName")) {
             String table = request.getParameter("table");
             manager.setTable(table);
-
             response.sendRedirect(response.encodeRedirectURL("mainPage"));
         } else if (action.startsWith("/comman")) {
             String table = request.getParameter("table");
