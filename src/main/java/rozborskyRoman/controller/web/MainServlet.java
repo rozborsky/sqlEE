@@ -59,7 +59,9 @@ public class MainServlet extends HttpServlet {
         if (action.startsWith("/mainPage")) {
             initMainPage(request, response);
         } else if (action.startsWith("/insert")) {
-            request.getRequestDispatcher("insert.jsp").forward(request, response);
+            insert(request, response);
+        } else if (action.startsWith("/update")) {
+            update(request, response);
         } else if (action.startsWith("/exit")) {
             exit(request, response);
         } else {
@@ -72,7 +74,6 @@ public class MainServlet extends HttpServlet {
         table = manager.getTable();
         String help = "SQL cmd - is a program that allows you to work with the database. " +
                 "Implemented using the technology of JSP.";
-        String[] rows;
         if (table == null) {
             request.setAttribute("tableName", help);
         } else {
@@ -137,6 +138,24 @@ public class MainServlet extends HttpServlet {
         }
     }
 
+    private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idUser = request.getParameter("idUser");
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        try {
+            int id = Integer.parseInt(idUser);
+            String values = "" + id + "', '" + name + "', '" + password;
+            String[] columns = {"name", "password"};
+            manager.update(id, values, columns);
+        } catch (Exception e) {
+            //table += "\n" + e.getMessage();// String columnsInRequest = columns(manager.getColumnNames(), " = ?, ");TODO: 07.06.2016
+        }
+        request.setAttribute("tableName", table);
+        showTableData(request);
+        setNavigation(request, response);
+        request.getRequestDispatcher("insert.jsp").forward(request, response);
+    }
+
     private void insert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idUser = request.getParameter("idUser");
         String name = request.getParameter("name");
@@ -147,7 +166,7 @@ public class MainServlet extends HttpServlet {
             String columns = "id, name, password";
             manager.insert(values, columns);
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            //table += "\n" + e.getMessage();// TODO: 07.06.2016
         }
         request.setAttribute("tableName", table);
         showTableData(request);

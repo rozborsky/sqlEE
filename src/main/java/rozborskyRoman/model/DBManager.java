@@ -52,7 +52,7 @@ public class DBManager {
         }
     }
 
-    public boolean update(String idColumn, String changedColumns, String[] enteredData) throws SQLException {
+    public boolean update(int idColumn, String changedColumns, String[] enteredData) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement("UPDATE public." + table +
                 " SET " + changedColumns + " = ? WHERE " + idColumn)) {
             int j;
