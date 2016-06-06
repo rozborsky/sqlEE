@@ -10,7 +10,6 @@ public class DBManager {
     private String database;
     private String table = null;
 
-
     public Connection createConnection(String database, String userName, String password, String url) throws SQLException {
         this.database = database;
         if (connection != null) {

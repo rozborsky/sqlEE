@@ -3,14 +3,24 @@
 <html>
 	<head>
 		<title>SQLCmd</title>
+		<style>
+             <%@include file='style.css' %>
+        </style>
 	</head>
 
 	<body>
-        <h1>Error</h1>
-        <p>${message}</p>
+	    <div class="mainPageLayout">
+        	 <div class="leftLayout">
+        	    <a href="mainPage"><h2>back</a></br>
+             </div>
 
-        <c:forEach items="${items}" var="item">
-            <a href="${item}"> ${item}</a></br>
-        </c:forEach>
+             <div class="content">
+                 <h1>Error</h1>
+                 <p>${message}</p>
+                 <c:forEach items="${content}" var="row">
+                      ${row}</br>
+                 </c:forEach>
+             </div>
+        </div>
 	</body>
 </html>

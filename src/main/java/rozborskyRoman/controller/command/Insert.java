@@ -38,18 +38,7 @@ public class Insert {
 
     private void insertData(InputOutput view, String showColumns) throws SQLException {
         do {
-            view.write("\n" + message + " values in format " + showColumns + ", 'back' to enter another command " +
-                    "or 'exit' to close program");
-            enteredData = view.read().split("\\|");
-            if (enteredData.length != 3) {
-                continue;
-            }
-            if (enteredData[0].equals("exit")) {
 
-            }
-            if (enteredData[0].equals("back")) {
-                return;
-            }
             try {
                 Integer.parseInt(enteredData[0]);
             } catch (Exception e) {

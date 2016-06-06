@@ -1,5 +1,6 @@
 package rozborskyRoman.service;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +11,4 @@ public interface Service {
     List<String> commands();
 
     List<String> commandsList();
-
-    void connect(String databaseName, String userName, String password) throws SQLException;
 }

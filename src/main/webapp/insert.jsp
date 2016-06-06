@@ -12,7 +12,7 @@
 	        <div class="leftLayout">
                 <h2>select table</h2>
 
-                <form action="selectTable" method="post">
+                <form action="tableName" method="post">
                     <select name="table">
 
                         <c:forEach items="${tables}" var="item">
@@ -24,8 +24,8 @@
 
                 <h2>select command</h2>
 
-                <form action="selectAction" method="post">
-                    <select name="action">
+                <form action="commandExecutor" method="post">
+                    <select name="tablee">
                         <c:forEach items="${commands}" var="command">
                             <option value="${command}">${command}</option>
                         </c:forEach>
@@ -33,20 +33,20 @@
                     <input type="submit" value="ok"/>
                 </form>
 
-                <c:forEach items="${navigationLinks}" var="link">
-                    <a href="${link}"><h2>${link}</h2></a></br>
-                </c:forEach>
+                 <c:forEach items="${navigationLinks}" var="link">
+                      <a href="${link}"><h2>${item}</h2></a></br>
+                 </c:forEach>
             </div>
 
             <div class="content">
-                <h1>${tableName}</h1>
-                <!--table>
-                	<tr>
-                		<td></td>
-                		<td></td>
-                		<td></td>
-                	</tr>
-                </table-->
+                <h1>Insert values in the ${tableName}</h1>
+                <h1>${error}</h1>
+                <form action="insertValues" method="post">
+                	id<input type="text" name="idUser"/>
+                	name<input type="text" name="name"/>
+                	password<input type="text" name="password"/>
+                	<input type="submit" value="insert"/>
+                </form>
                 <c:forEach items="${content}" var="row">
                     ${row}</br>
                 </c:forEach>
