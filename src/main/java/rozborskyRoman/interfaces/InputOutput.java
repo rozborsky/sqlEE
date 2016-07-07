@@ -1,4 +1,4 @@
-package rozborskyRoman.view;
+package rozborskyRoman.interfaces;
 
 /**
  * Created by roman on 13.05.2016.

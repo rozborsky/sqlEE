@@ -1,11 +1,16 @@
 package rozborskyRoman.model;
 
+import org.springframework.stereotype.Component;
+import rozborskyRoman.interfaces.DataBase;
+
 import java.sql.*;
 
 /**
  * Created by roman on 18.04.2016.
  */
-public class DBManager {
+
+//@Component
+public class DBManager implements DataBase{
     private Connection connection;
     private String database;
     private String table = null;

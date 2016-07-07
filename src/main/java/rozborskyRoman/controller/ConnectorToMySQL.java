@@ -1,5 +1,8 @@
 package rozborskyRoman.controller;
 
+import org.springframework.stereotype.Component;
+import rozborskyRoman.interfaces.Connector;
+import rozborskyRoman.interfaces.DataBase;
 import rozborskyRoman.model.DBManager;
 
 import java.io.IOException;
@@ -10,9 +13,11 @@ import java.util.Properties;
 /**
  * Created by roman on 06.06.2016.
  */
-public class Connector {
 
-    public void createConnection(DBManager manager, String databaseName, String userName, String password)
+@Component
+public class ConnectorToMySQL implements Connector{
+
+    public void createConnection(DataBase manager, String databaseName, String userName, String password)
             throws IOException, SQLException {
         manager.createConnection(databaseName, userName, password, getUrl());
     }
@@ -24,5 +29,4 @@ public class Connector {
 
         return property.getProperty("url");
     }
-
 }

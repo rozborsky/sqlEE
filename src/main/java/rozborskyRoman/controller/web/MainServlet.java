@@ -1,10 +1,13 @@
 package rozborskyRoman.controller.web;
 
-import rozborskyRoman.controller.Connector;
-import rozborskyRoman.model.DBManager;
-import rozborskyRoman.service.Service;
-import rozborskyRoman.service.ServiseImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import rozborskyRoman.interfaces.Connector;
+import rozborskyRoman.interfaces.DataBase;
+import rozborskyRoman.interfaces.Service;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +18,8 @@ import java.sql.SQLException;
 /**
  * Created by roman on 30.05.2016.
  */
+@Component
 public class MainServlet extends HttpServlet {
-
-    DBManager manager;
-    boolean isConnect = false;
-    String table = null;
 
     static {//todo replase
         try {
@@ -29,13 +29,23 @@ public class MainServlet extends HttpServlet {
         }
     }
 
+    @Autowired
     private Service service;
 
+    @Autowired
+    private DataBase manager;
+
+    @Autowired
+    private Connector connector;
+
+    boolean isConnect = false;
+    String table = null;
+
     @Override
-    public void init() throws ServletException {
-        super.init();
-        manager = new DBManager();
-        service = new ServiseImpl();
+    public void init(ServletConfig config) throws ServletException  {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
     }
 
     @Override
@@ -200,7 +210,6 @@ public class MainServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            Connector connector = new Connector();
             connector.createConnection(manager, databaseName, userName, password);
             isConnect = true;
             response.sendRedirect(response.encodeRedirectURL("mainPage"));

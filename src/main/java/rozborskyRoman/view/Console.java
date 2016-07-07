@@ -1,5 +1,7 @@
 package rozborskyRoman.view;
 
+import rozborskyRoman.interfaces.InputOutput;
+
 import java.util.Scanner;
 
 public class Console implements InputOutput {

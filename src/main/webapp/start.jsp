@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-        <h1 class="startH1">SQL CMD</h1>
+        <h1 class="startH1">SQL CMD14</h1>
         <div class="logForm">
             <form action="connect" method="post">
                 <table>

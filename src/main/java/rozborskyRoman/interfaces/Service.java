@@ -1,4 +1,4 @@
-package rozborskyRoman.service;
+package rozborskyRoman.interfaces;
 
 import java.io.IOException;
 import java.sql.SQLException;
